@@ -1,3 +1,47 @@
-[gd_scene load_steps=1 format=3 uid="uid://b1kq1o1l0q1l0"]
+[gd_scene load_steps=7 format=3 uid="uid://b1kq1o1l0q1l0"]
+[ext_resource type="Script" path="res://scripts/game/game_manager.gd" uid="uid://gamemgr"]
+[ext_resource type="Script" path="res://scripts/ghost/ghost_manager.gd" uid="uid://ghostmgr"]
+[ext_resource type="Script" path="res://scripts/puzzles/puzzle_system.gd" uid="uid://puzzlesys"]
+[ext_resource type="Script" path="res://scripts/audio/audio_manager.gd" uid="uid://audiomgr"]
+[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" uid="uid://c2kq2o2m0q2m0"]
+[ext_resource type="PackedScene" path="res://scenes/ui/ui.tscn" uid="uid://ui001"]
 
 [node name="Main" type="Node3D"]
+
+# Game Systems
+[node name="GameManager" type="Node" parent="."]
+script = ExtResource("uid://gamemgr")
+
+[node name="GhostManager" type="Node3D" parent="."]
+script = ExtResource("uid://ghostmgr")
+
+[node name="PuzzleSystem" type="Node" parent="."]
+script = ExtResource("uid://puzzlesys")
+
+[node name="AudioManager" type="Node" parent="."]
+script = ExtResource("uid://audiomgr")
+
+# Player
+[node name="Player" parent="." instance=ExtResource("uid://c2kq2o2m0q2m0")]
+
+# UI
+[node name="UI" parent="." instance=ExtResource("uid://ui001")]
+
+# Environment & Lighting
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="Lighting" type="Node3D" parent="Environment"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment/Lighting"]
+transform = Transform3D(0.707107, -0.612372, 0.353553, 0, 0.5, 0.866025, -0.707107, -0.612372, 0.353553, 0, 5, 0)
+light_energy = 0.5
+shadow_enabled = true
+
+[node name="AmbientLight3D" type="OmniLight3D" parent="Environment/Lighting"]
+light_energy = 0.2
+omni_range = 50.0
+
+# Ground
+[node name="Ground" type="CSGBox3D" parent="Environment"]
+size = Vector3(20, 0.5, 20)
+position = Vector3(0, -0.5, 0)
