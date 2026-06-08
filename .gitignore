@@ -1,0 +1,33 @@
+# Godot
+.godot/
+*.gdshader~
+*.gdshader.bak
+*.gd~
+*.gd.bak
+*.tscn~
+*.tscn.bak
+
+# Import cache
+.godot/imported/
+
+# Build files
+bin/
+build/
+dist/
+
+# OS specific
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Python
+__pycache__/
+*.pyc
